@@ -7,7 +7,7 @@
         <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }} - {{ post.author.first_name }}</a><a
                 href="{% url 'update_post' post.pk %}"><img src="{% static 'img/edit_32px.png' %}" alt="" class="edit"></a><a
                 href="{% url 'delete_post' post.pk %}"><img src="{% static 'img/trash_32px.png' %}" alt="" class="edit"></a><br>
-        {{ post.body }}</li>
+        {{ post.body }} - {{ post.post_date }}</li>
     {% endfor %}
 </ul>
 {% endblock %}
