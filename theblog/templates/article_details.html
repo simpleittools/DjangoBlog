@@ -3,7 +3,8 @@
 {% block title %}{{ post.title_tag }}{% endblock %}
 {% block content %}
 <h1>{{ post.title }}</h1>
-<small>By: {{ post.author.first_name }}</small><a href="{% url 'update_post' post.pk %}"><img src="{% static 'img/edit_32px.png' %}" alt="" class="edit"></a><br>
+<small>By: {{ post.author.first_name }}</small><a href="{% url 'update_post' post.pk %}"><img src="{% static 'img/edit_32px.png' %}" alt="" class="edit"></a>
+    <a href="{% url 'delete_post' post.pk %}"><img src="{% static 'img/trash_32px.png' %}" alt="" class="edit"></a><br>
 <hr>
 {{ post.body }}
 
