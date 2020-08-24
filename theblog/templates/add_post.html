@@ -3,13 +3,21 @@
 {% block title %}The Blog - Create A New Blog Post{% endblock %}
 
 {% block content %}
-<h1>Add Post</h1>
-<form action="" method="post">
-    {% csrf_token %}
-    <div class="form-group">
-        {{ form.as_p }}
-        <button class="btn btn-secondary">Post</button>
-    </div>
 
-</form>
+    {% if user.is_authenticated %}
+        <h1>Add Post</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+                <button class="btn btn-secondary">Post</button>
+            </div>
+
+        </form>
+    {% else %}
+        You need to login to view this page
+        <br>
+        <a href="{% url 'login'%}" class="btn btn-secondary">Login</a>
+        <a href="{% url 'home'%}" class="btn btn-primary">Home</a>
+    {% endif %}
 {% endblock %}

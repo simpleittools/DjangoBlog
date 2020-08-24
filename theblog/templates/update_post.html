@@ -3,13 +3,20 @@
 {% block title %}The Blog - Update A Blog Post{% endblock %}
 
 {% block content %}
-<h1>Update Post</h1>
-<form action="" method="post">
-    {% csrf_token %}
-    <div class="form-group">
-        {{ form.as_p }}
-        <button class="btn btn-secondary">Update</button>
-    </div>
+    {% if user.is_authenticated %}
+        <h1>Update Post</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+                <button class="btn btn-secondary">Update</button>
+            </div>
 
-</form>
+        </form>
+    {% else %}
+        You need to login to view this page
+        <br>
+        <a href="{% url 'login'%}" class="btn btn-secondary">Login</a>
+        <a href="{% url 'home'%}" class="btn btn-primary">Home</a>
+    {% endif %}
 {% endblock %}

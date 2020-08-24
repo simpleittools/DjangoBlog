@@ -4,10 +4,13 @@
 <h1>Post</h1>
 <ul>
     {% for post in object_list %}
-        <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }} - {{ post.author.first_name }}</a><a
+        <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }} - {{ post.author.first_name }}</a>
+            {% if user.is_authenticated %}
+            <a
                 href="{% url 'update_post' post.pk %}"><img src="{% static 'img/edit_32px.png' %}" alt="" class="edit"></a><a
-                href="{% url 'delete_post' post.pk %}"><img src="{% static 'img/trash_32px.png' %}" alt="" class="edit"></a><br>
-        {{ post.body }} - {{ post.post_date }}</li>
+                href="{% url 'delete_post' post.pk %}"><img src="{% static 'img/trash_32px.png' %}" alt="" class="edit"></a>
+            {% endif %}<br>
+        {{ post.body|slice:':100' }} - {{ post.post_date }}</li>
     {% endfor %}
 </ul>
 {% endblock %}
