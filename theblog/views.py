@@ -26,19 +26,27 @@ class AddPostView(CreateView):
     # fields = '__all__'
     # fields = ('title', 'title_tag', 'author', 'body')
 
+
 class UpdatePostView(UpdateView):
     model = Post
     form_class = UpdateForm
     template_name = "update_post.html"
     #fields = ['title', 'title_tag', 'body']
 
+
 class DeletePostView(DeleteView):
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('home')
+
 
 class AddCategoryView(CreateView):
     model = Category
     #form_class = PostForm
     fields = ['name']
     template_name = 'add_category.html'
+
+
+def CategoryView(request, cats):
+    category_posts = Post.objects.filter(category=cats.title().replace('-', ' '))
+    return render(request, 'categories.html', {'cats': cats.title().replace('-', ' '), 'category_posts': category_posts})
