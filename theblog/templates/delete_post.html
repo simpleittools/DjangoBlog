@@ -4,6 +4,7 @@
 
 {% block content %}
     {% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
         <h1>Delete Post...</h1>
             <br>
         <h3>Delete: {{ post.title }}</h3>
@@ -12,6 +13,9 @@
             <strong>Are you sure?</strong>
             <button class="btn btn-warning">Delete Post!</button>
         </form>
+        {% else %}
+            You know this isn't yours
+        {% endif %}
     {% else %}
         You need to login to view this page
         <br>
