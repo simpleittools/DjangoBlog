@@ -24,15 +24,39 @@
     {% else %}
         {{ total_likes }} Likes
     {% endif %}
-{% if user.is_authenticated and user.id != post.author.id %}
 
+    {% if total_dislikes == 1 %}
+        {{ total_dislikes }} Dislike
+    {% else %}
+        {{ total_dislikes }} Dislikes
+    {% endif %}
 
-<br>
+{% if user.is_authenticated %}
+    {% if user.id != post.author.id  %}
 
-    <form action="{% url 'like_post' post.pk %}" method="POST">
-        {% csrf_token %}
-        <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-sm"><img src="{% static 'img/thumbs_up_24px.png' %}" alt="Like"></button>
-    </form>
+        <br>
+        <div>
+            <form action="{% url 'like_post' post.pk %}" method="POST" style="float: left;">
+                {% csrf_token %}
+                {% if liked %}
+                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn"><img src="{% static 'img/thumbs_up_color_64px.png' %}" alt="Like" class="thumb"></button>
+                {% else %}
+                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn"><img src="{% static 'img/thumbs_up_64px.png' %}" alt="Like" class="thumb"></button>
+                {% endif %}
+            </form>
+
+            <form action="{% url 'dislike_post' post.pk %}" method="POST" style="float: left; padding-top: 6px;">
+                {% csrf_token %}
+                {% if disliked %}
+                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn"><img src="{% static 'img/thumbs_down_color_64px.png' %}" alt="Dislike" class="thumb"></button>
+                {% else %}
+                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn"><img src="{% static 'img/thumbs_down_64px.png' %}" alt="Dislike" class="thumb"></button>
+                {% endif %}
+            </form>
+        </div>
+    {% endif %}
+    {% else %}
+        <p><small>Login to Like or Dislike</small></p>
 {% endif %}
 
 {% endblock %}

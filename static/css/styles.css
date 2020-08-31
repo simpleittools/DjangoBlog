@@ -6,3 +6,17 @@
 a:hover{
     text-decoration: none;
 }
+
+.thumb {
+    height: 24px;
+    float: left;
+}
+
+.like {
+
+}
+
+.dislike {
+    float: left;
+    padding-top: 6px;
+}
