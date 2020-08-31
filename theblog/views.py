@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, Category
 from .forms import PostForm, UpdateForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseRedirect
 
 
 # def home(request):
@@ -27,6 +28,8 @@ class ArticleDetailView(DetailView):
         cat_menu = Category.objects.all()
         context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
         context['cat_menu'] = cat_menu
+        total_likes = get_object_or_404(Post, id=self.kwargs['pk']).total_likes()
+        context['total_likes'] = total_likes
         return context
 
 
@@ -60,9 +63,15 @@ class AddCategoryView(CreateView):
 
 def CategoryView(request, cats):
     category_posts = Post.objects.filter(category=cats.title().replace('-', ' '))
-    return render(request, 'categories.html', {'cats': cats.title().replace('-', ' '), 'category_posts': category_posts})
+    return render(request, 'categories.html', {'cats': cats.title().replace('-', ' '),
+                                               'category_posts': category_posts})
 
 
 def CategoryListView(request):
     cat_menu_list = Category.objects.all()
     return render(request, 'category_list.html', {'cat_menu_list': cat_menu_list})
+
+def LikeView(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('article-detail', args=[str(pk)]))

@@ -17,6 +17,23 @@
 
 <br><br>
 <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    <br>
+<hr>
+    {% if total_likes == 1 %}
+        {{ total_likes }} Like
+    {% else %}
+        {{ total_likes }} Likes
+    {% endif %}
+{% if user.is_authenticated and user.id != post.author.id %}
+
+
+<br>
+
+    <form action="{% url 'like_post' post.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-sm"><img src="{% static 'img/thumbs_up_24px.png' %}" alt="Like"></button>
+    </form>
+{% endif %}
 
 {% endblock %}
 
