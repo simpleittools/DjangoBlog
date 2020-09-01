@@ -38,19 +38,27 @@
         <div>
             <form action="{% url 'like_post' post.pk %}" method="POST" style="float: left;">
                 {% csrf_token %}
-                {% if liked %}
-                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn"><img src="{% static 'img/thumbs_up_color_64px.png' %}" alt="Like" class="thumb"></button>
+                {% if disliked %}
+                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn" disabled><img src="{% static 'img/thumbs_up_64px.png' %}" alt="Like" class="thumb"></button>
                 {% else %}
-                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn"><img src="{% static 'img/thumbs_up_64px.png' %}" alt="Like" class="thumb"></button>
+                    {% if liked %}
+                        <button type="submit" name="post_id" value="{{ post.id }}" class="btn"><img src="{% static 'img/thumbs_up_color_64px.png' %}" alt="Like" class="thumb"></button>
+                    {% else %}
+                        <button type="submit" name="post_id" value="{{ post.id }}" class="btn"><img src="{% static 'img/thumbs_up_64px.png' %}" alt="Like" class="thumb"></button>
+                    {% endif %}
                 {% endif %}
             </form>
 
             <form action="{% url 'dislike_post' post.pk %}" method="POST" style="float: left; padding-top: 6px;">
                 {% csrf_token %}
-                {% if disliked %}
-                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn"><img src="{% static 'img/thumbs_down_color_64px.png' %}" alt="Dislike" class="thumb"></button>
+                {% if liked %}
+                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn" disabled><img src="{% static 'img/thumbs_down_64px.png' %}" alt="Dislike" class="thumb" ></button>
                 {% else %}
-                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn"><img src="{% static 'img/thumbs_down_64px.png' %}" alt="Dislike" class="thumb"></button>
+                    {% if disliked %}
+                        <button type="submit" name="post_id" value="{{ post.id }}" class="btn"><img src="{% static 'img/thumbs_down_color_64px.png' %}" alt="Dislike" class="thumb"></button>
+                    {% else %}
+                        <button type="submit" name="post_id" value="{{ post.id }}" class="btn"><img src="{% static 'img/thumbs_down_64px.png' %}" alt="Dislike" class="thumb"></button>
+                    {% endif %}
                 {% endif %}
             </form>
         </div>
