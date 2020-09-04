@@ -12,7 +12,7 @@
                 href="{% url 'delete_post' post.pk %}"><img src="{% static 'img/trash_32px.png' %}" alt="" class="edit"></a>
             {% endif %}
             {% endif %}<br>
-        {{ post.body|slice:':100'|safe }} - {{ post.post_date }}</li>
+        {{ post.snippet }}</li>
     {% endfor %}
 </ul>
 {% endblock %}
