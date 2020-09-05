@@ -12,7 +12,9 @@
     {% endif %}
 <small>Published on {{ post.post_date }}</small><br>
     <hr>
-
+    {% if post.header_image %}
+    <img src="{{ post.header_image.url }}" alt="">
+    {% endif %}
 {{ post.body|safe }}
 
 <br><br>
