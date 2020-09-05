@@ -68,6 +68,45 @@
     {% else %}
         <p><small>Login to Like or Dislike</small></p>
 {% endif %}
+    <div class="card mb-3">
+        <div class="row now-gutters">
+            <div class="col-md-2">
+                <img src="{{ post.author.profile.profile_pic.url }}" alt="{{ post.author.first_name }}'s Profile Picture" class="profile_pic rounded-circle">
+            </div>
+            <div class="col-md-10">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.author.first_name }}'s Bio</h5>
+                    <p class="small text-muted">
+                        {% if post.author.profile.website_url %}
+                            <a href="{{ post.author.profile.website_url }}" target="_blank"><img src="{% static 'img/website_48px.png' %}" alt="Website" class="social_media"></a>
+                        {% endif %}
+
+                        {% if post.author.profile.facebook_url %}
+                           | <a href="{{ post.author.profile.facebook_url }}" target="_blank"><img src="{% static 'img/facebook_48px.png' %}" alt="Facebook" class="social_media"></a>
+                        {% endif %}
+
+                        {% if post.author.profile.twitter_url %}
+                            | <a href="{{ post.author.profile.twitter_url }}" target="_blank"><img src="{% static 'img/twitter_squared_48px.png' %}" alt="Twitter" class="social_media"></a>
+                        {% endif %}
+
+                        {% if post.author.profile.instagram_url %}
+                            | <a href="{{ post.author.profile.instagram_url }}" target="_blank"><img src="{% static 'img/instagram_48px.png' %}" alt="Instagram" class="social_media"></a>
+                        {% endif %}
+
+                        {% if post.author.profile.pinterest_url %}
+                            | <a href="{{ post.author.profile.pinterest_url }}" target="_blank"><img src="{% static 'img/pinterest_48px.png' %}" alt="Pinterest" class="social_media"></a>
+                        {% endif %}
+
+                    </p>
+                    <p class="card-text">
+                        {{ post.author.profile.bio }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
 
 {% endblock %}
 

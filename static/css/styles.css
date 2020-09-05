@@ -20,3 +20,13 @@ a:hover{
     float: left;
     padding-top: 6px;
 }
+
+.profile_pic {
+    max-height: 200px;
+    max-width: 200px;
+}
+
+.social_media {
+    max-width: 25px;
+    max-height: 25px;
+}
