@@ -71,7 +71,11 @@
     <div class="card mb-3">
         <div class="row now-gutters">
             <div class="col-md-2">
-                <img src="{{ post.author.profile.profile_pic.url }}" alt="{{ post.author.first_name }}'s Profile Picture" class="profile_pic rounded-circle">
+                {% if post.author.profile.profile_pic %}
+                    <img src="{{ post.author.profile.profile_pic.url }}" alt="{{ post.author.first_name }}'s Profile Picture" class="profile_pic rounded-circle">
+                {% else %}
+                    <img src="{% static 'img/customer_120px.png' %}" alt="{{ post.author.first_name }}" class="no_profile_pic rounded-circle">
+                {% endif %}
             </div>
             <div class="col-md-10">
                 <div class="card-body">

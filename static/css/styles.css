@@ -26,6 +26,11 @@ a:hover{
     max-width: 200px;
 }
 
+.no_profile_pic {
+    min-height: 100px;
+    min-width: 100px;
+}
+
 .social_media {
     max-width: 25px;
     max-height: 25px;
