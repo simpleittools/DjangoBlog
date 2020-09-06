@@ -20,6 +20,7 @@
 <br><br>
 <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
     <br>
+<!--Likes section-->
 <hr>
     {% if total_likes == 1 %}
         {{ total_likes }} Like
@@ -76,6 +77,10 @@
     {% if not post.comments.all %}
         <p>No comments yet <a href="#">Be the first to comment</a></p>
     {% else %}
+        <!-- TODO: Add a logic for adding comments avaialble to Athenticated users only-->
+        <a href="" class="btn btn-sm btn-primary" style="float:right">Add Comment</a>
+
+        <br>
         {% for comment in post.comments.all %}
             <strong>{{ comment.name }} -
             {{ comment.date_added }}</strong>
@@ -85,6 +90,7 @@
     {% endif %}
 
     <hr>
+    <!--Profile Section-->
     <div class="card mb-3">
         <div class="row now-gutters">
             <div class="col-md-2">
