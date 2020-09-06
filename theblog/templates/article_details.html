@@ -68,9 +68,22 @@
     {% else %}
         <p><small>Login to Like or Dislike</small></p>
 {% endif %}
+    <br><br>
+    <hr>
+    <!--Comments Section -->
+    <h3>Comments</h3>
+    {% if not post.comments.all %}
+        <p>No comments yet <a href="#">Be the first to comment</a></p>
+    {% else %}
+        {% for comment in post.comments.all %}
+            <strong>{{ comment.name }} -
+            {{ comment.date_added }}</strong>
+            <br>
+            {{ comment.body|safe }}
+        {% endfor %}
+    {% endif %}
 
-    <br>
-    <br>
+    <hr>
     <div class="card mb-3">
         <div class="row now-gutters">
             <div class="col-md-2">
