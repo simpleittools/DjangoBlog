@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>User Profile</h1>
+
+<div class="card mb-3">
+        <div class="row now-gutters">
+            <div class="col-md-2">
+                {% if page_user.profile_pic %}
+                    <img src="{{ page_user.profile_pic.url }}" alt="{{ page_user.user.first_name }}'s Profile Picture" class="profile_pic rounded-circle">
+                {% else %}
+                    <img src="{% static 'img/customer_120px.png' %}" alt="{{ page_user.user.first_name }}" class="no_profile_pic rounded-circle">
+                {% endif %}
+            </div>
+            <div class="col-md-10">
+                <div class="card-body">
+                    <h5 class="card-title">{{ page_user.user.first_name }}'s Bio</h5>
+                    <p class="small text-muted">
+
+                        {% if page_user.website_url %}
+                            <a href="{{ page_user.website_url }}" target="_blank"><img src="{% static 'img/website_48px.png' %}" alt="Website" class="social_media"></a>
+                        {% endif %}
+
+                        {% if page_user.facebook_url %}
+                           | <a href="{{ page_user.facebook_url }}" target="_blank"><img src="{% static 'img/facebook_48px.png' %}" alt="Facebook" class="social_media"></a>
+                        {% endif %}
+
+                        {% if page_user.twitter_url %}
+                            | <a href="{{ page_user.twitter_url }}" target="_blank"><img src="{% static 'img/twitter_squared_48px.png' %}" alt="Twitter" class="social_media"></a>
+                        {% endif %}
+
+                        {% if page_user.instagram_url %}
+                            | <a href="{{ page_user.instagram_url }}" target="_blank"><img src="{% static 'img/instagram_48px.png' %}" alt="Instagram" class="social_media"></a>
+                        {% endif %}
+
+                        {% if page_user.pinterest_url %}
+                            | <a href="{{ page_user.pinterest_url }}" target="_blank"><img src="{% static 'img/pinterest_48px.png' %}" alt="Pinterest" class="social_media"></a>
+                        {% endif %}
+
+                    </p>
+                    <p class="card-text">
+                        {{ page_user.bio }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

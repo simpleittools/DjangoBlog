@@ -68,6 +68,9 @@
     {% else %}
         <p><small>Login to Like or Dislike</small></p>
 {% endif %}
+
+    <br>
+    <br>
     <div class="card mb-3">
         <div class="row now-gutters">
             <div class="col-md-2">
@@ -81,8 +84,11 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ post.author.first_name }}'s Bio</h5>
                     <p class="small text-muted">
+
+                        <a href="{% url 'show_profile_page' post.author.profile.id %}"><img src="{% static 'img/user_folder_48px.png' %}" alt="Profile Page" class="social_media"></a>
+
                         {% if post.author.profile.website_url %}
-                            <a href="{{ post.author.profile.website_url }}" target="_blank"><img src="{% static 'img/website_48px.png' %}" alt="Website" class="social_media"></a>
+                            | <a href="{{ post.author.profile.website_url }}" target="_blank"><img src="{% static 'img/website_48px.png' %}" alt="Website" class="social_media"></a>
                         {% endif %}
 
                         {% if post.author.profile.facebook_url %}

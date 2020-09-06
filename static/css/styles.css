@@ -13,7 +13,7 @@ a:hover{
 }
 
 .like {
-
+    float: left;
 }
 
 .dislike {
@@ -34,4 +34,10 @@ a:hover{
 .social_media {
     max-width: 25px;
     max-height: 25px;
+}
+
+profile {
+    display: block;
+    position: absolute;
+    float: left;
 }
