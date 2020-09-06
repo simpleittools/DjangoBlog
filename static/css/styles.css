@@ -36,8 +36,7 @@ a:hover{
     max-height: 25px;
 }
 
-profile {
-    display: block;
-    position: absolute;
-    float: left;
+a.comment {
+    float:right;
 }
+
