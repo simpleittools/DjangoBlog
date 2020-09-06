@@ -22,8 +22,5 @@
         <a href="{% url 'register'%}" class="btn btn-info">Register</a>
         <a href="{% url 'home'%}" class="btn btn-primary">Home</a>
     {% endif %}
-    <script>
-        let name = '{{ user.id }}';
-        document.getElementById('author').value = name;
-    </script>
+
 {% endblock %}

@@ -12,6 +12,7 @@ from theblog.models import Profile
 class UserRegisterView(generic.CreateView):
     form_class = SignUpForm
     template_name = 'registration/register.html'
+
     def form_valid(self, form):
         form.save()
         username = self.request.POST['username']
@@ -19,6 +20,7 @@ class UserRegisterView(generic.CreateView):
         user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'], )
         login(self.request, user)
         return redirect(self.success_url)
+
     success_url = reverse_lazy('create_profile_page')
 
 
