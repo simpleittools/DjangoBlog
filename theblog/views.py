@@ -108,6 +108,7 @@ def DislikeView(request, pk):
 
     return HttpResponseRedirect(reverse('article-detail', args=[str(pk)]))
 
+
 class AddCommentView(CreateView):
     model = Comment
     #form_class = PostForm

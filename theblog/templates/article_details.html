@@ -74,7 +74,7 @@
     <!--Comments Section -->
     <h3>Comments</h3>
     {% if not post.comments.all %}
-        <p>No comments yet <a href="{% url 'add_category' post.pk %}">Be the first to comment</a></p>
+        <p>No comments yet <a href="{% url 'add_comment' post.pk %}">Be the first to comment</a></p>
     {% else %}
         {% if user.is_authenticated %}
             <a href="{% url 'add_comment' post.pk %}" class="btn btn-sm btn-primary comment" >Add Comment</a>
